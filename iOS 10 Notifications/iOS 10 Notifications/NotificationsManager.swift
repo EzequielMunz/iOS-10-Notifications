@@ -13,6 +13,7 @@ import UIKit
 class NotificationsManager : NSObject, UNUserNotificationCenterDelegate {
     
     static let sharedInstance : NotificationsManager = NotificationsManager()
+    private var counter : Int = 0
     
     private override init() {
         super.init()
@@ -22,6 +23,11 @@ class NotificationsManager : NSObject, UNUserNotificationCenterDelegate {
                 print(error)
             }
         }
+    }
+    
+    func reset() {
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     // MARK: UNUserNotificationCenterDelegate
@@ -54,20 +60,23 @@ class NotificationsManager : NSObject, UNUserNotificationCenterDelegate {
         let content : UNMutableNotificationContent = UNMutableNotificationContent()
         content.title = "New notification"
         content.body = "New notification test on iOS 10"
+        content.badge = counter
         
         let trigger : UNTimeIntervalNotificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
         
-        let requestIdentifier : String = "Custom notification request"
+        // The request identifier must be unique. If you create a new notification request with the same identifier that one pending notification, it will be overwritten with the new one. If you wanna trigger multiple notifications, the request identifier must be different on each case.
+        let requestIdentifier : String = "Custom notification request \(counter)"
         let request : UNNotificationRequest = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { error in
             if error == nil {
                 NotificationCenter.default().post(name: "NotificationsUpdate" as NSNotification.Name, object: nil)
+                self.counter += 1
             }
         }
     }
     
     // MARK: Get pending notification requests
-    
+    // Pending notification requests are the request that are created, but not triggered yet.
     func requestPendingNotifications(completionHandler : ([Date]) -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests() { pendingNotifications in
             var pendingNotificationsDates : [Date] = []
@@ -77,13 +86,14 @@ class NotificationsManager : NSObject, UNUserNotificationCenterDelegate {
                     let date = trigger.nextTriggerDate()
                     else { break }
                 pendingNotificationsDates.append(date)
-                completionHandler(pendingNotificationsDates)
             }
+            completionHandler(pendingNotificationsDates)
+            print("Count Pending: \(pendingNotifications.count)")
         }
     }
     
     // MARK: Get delivered notifications
-    
+    // The delivered notifications are the ones that the user didn't read yet. If the notification is already opened, it will not appear on the delivered notifications list.
     func requestDeliveredNotifications(completionHandler : ([Date]) -> Void) {
         UNUserNotificationCenter.current().getDeliveredNotifications() { deliveredNotifications in
             var deliveredNotificationsDates : [Date] = []
@@ -91,6 +101,7 @@ class NotificationsManager : NSObject, UNUserNotificationCenterDelegate {
                 deliveredNotificationsDates.append(notification.date)
             }
             completionHandler(deliveredNotificationsDates)
+            print("Count Delivered: \(deliveredNotifications.count)")
         }
     }
 }

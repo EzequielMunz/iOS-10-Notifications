@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         NotificationCenter.default().removeObserver(self)
     }
     
-    // UITableViewDataSource
+    // MARK: UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -92,12 +92,12 @@ class ViewController: UIViewController, UITableViewDataSource {
     func updateTableView() {
         let pendingUpdateCompletion : ([Date]) -> Void = { dates in
             self.pendingNotifications = dates
-            self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+            self.tableView.reloadData()
         }
         
         let deliveredUpdateCompletion : ([Date]) -> Void = { dates in
             self.deliveredNotifications = dates
-            self.tableView.reloadSections(IndexSet(integer: 1), with: .fade)
+            self.tableView.reloadData()
         }
         
         NotificationsManager.sharedInstance.requestPendingNotifications(completionHandler: pendingUpdateCompletion)

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>NotificationExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>iOS 10 Notifications.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>37BB66691D2408B9000C444D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>37BB66861D2445E9000C444D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

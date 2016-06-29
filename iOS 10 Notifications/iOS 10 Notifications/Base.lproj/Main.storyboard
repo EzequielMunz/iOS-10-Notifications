@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOS_10_Notifications" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsD-P6-BhN">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="MiR-WJ-QFh"/>
+                                </constraints>
+                                <state key="normal" title="Schedule new notification"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="scheduleNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m4P-eZ-OT0"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="tA3-sd-FDL">
+                                <connections>
+                                    <action selector="didSelectTimeInterval:" destination="BYZ-38-t0r" eventType="valueChanged" id="2cA-a2-6GC"/>
+                                </connections>
+                            </slider>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="nnh-rS-FKA">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationsCell" rowHeight="44" id="1hi-Fc-YQi" customClass="NotificationsCell" customModule="iOS_10_Notifications" customModuleProvider="target">
+                                        <frame key="frameInset" minY="56" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1hi-Fc-YQi" id="pVR-7H-xe2">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a50-GL-dPl">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="a50-GL-dPl" firstAttribute="trailing" secondItem="pVR-7H-xe2" secondAttribute="trailingMargin" id="1Sg-IZ-4cU"/>
+                                                <constraint firstItem="a50-GL-dPl" firstAttribute="top" secondItem="pVR-7H-xe2" secondAttribute="topMargin" constant="3" id="Bn1-4Y-dsE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="a50-GL-dPl" secondAttribute="bottom" constant="3" id="VU6-Vf-NnG"/>
+                                                <constraint firstItem="a50-GL-dPl" firstAttribute="leading" secondItem="pVR-7H-xe2" secondAttribute="leadingMargin" id="eaM-Gl-8ow"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="a50-GL-dPl" id="GPu-QO-QfB"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XA-Ms-dqG">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="98" id="Vrk-ax-IIx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tA3-sd-FDL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="8qj-gR-2iF"/>
+                            <constraint firstItem="nnh-rS-FKA" firstAttribute="top" secondItem="qsD-P6-BhN" secondAttribute="bottom" constant="23" id="8sh-kv-ze3"/>
+                            <constraint firstItem="qsD-P6-BhN" firstAttribute="top" secondItem="7XA-Ms-dqG" secondAttribute="bottom" constant="27" id="AJg-DA-HcK"/>
+                            <constraint firstItem="7XA-Ms-dqG" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="EPO-Zv-CRE"/>
+                            <constraint firstItem="nnh-rS-FKA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="N5b-Ee-DCV"/>
+                            <constraint firstAttribute="trailing" secondItem="nnh-rS-FKA" secondAttribute="trailing" id="REh-zM-kk5"/>
+                            <constraint firstItem="qsD-P6-BhN" firstAttribute="top" secondItem="tA3-sd-FDL" secondAttribute="bottom" constant="23" id="SB4-fu-RKi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qsD-P6-BhN" secondAttribute="trailing" constant="70" id="ZGj-A6-rGm"/>
+                            <constraint firstItem="qsD-P6-BhN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="69" id="cf9-0m-bve"/>
+                            <constraint firstItem="7XA-Ms-dqG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="47" id="doR-h8-Kfw"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nnh-rS-FKA" secondAttribute="bottom" id="eSt-7J-Bvh"/>
+                            <constraint firstItem="qsD-P6-BhN" firstAttribute="top" secondItem="tA3-sd-FDL" secondAttribute="bottom" constant="23" id="fdJ-gM-qGT"/>
+                            <constraint firstItem="7XA-Ms-dqG" firstAttribute="leading" secondItem="tA3-sd-FDL" secondAttribute="trailing" constant="13" id="jM7-ur-tHQ"/>
+                            <constraint firstItem="tA3-sd-FDL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="42" id="yUi-ma-bWv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="slider" destination="tA3-sd-FDL" id="VWl-ko-3DO"/>
+                        <outlet property="tableView" destination="nnh-rS-FKA" id="ocI-46-lSH"/>
+                        <outlet property="timeLabel" destination="7XA-Ms-dqG" id="qek-TA-vNZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+        </scene>
+    </scenes>
+</document>
